@@ -1,5 +1,6 @@
 import { FlatCompat } from "@eslint/eslintrc";
 import queryPlugin from "@tanstack/eslint-plugin-query";
+//@ts-ignore
 import drizzle from "eslint-plugin-drizzle";
 import tseslint from "typescript-eslint";
 
