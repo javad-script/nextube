@@ -1,7 +1,11 @@
-import "./src/lib/env";
+import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
-const config = {
+const nextConfig: NextConfig = {
+  /* config options here */
   allowedDevOrigins: ["*"],
 };
 
-export default config;
+const withNextIntl = createNextIntlPlugin();
+
+export default withNextIntl(nextConfig);
