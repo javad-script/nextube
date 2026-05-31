@@ -1,4 +1,5 @@
 import { createClient } from "redis";
+import "server-only";
 
 const globalForRedis = globalThis as unknown as {
   redis: ReturnType<typeof createClient> | undefined;
