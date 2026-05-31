@@ -1,5 +1,5 @@
 import { FlatCompat } from "@eslint/eslintrc";
-// @ts-ignore -- no types for this plugin
+import queryPlugin from "@tanstack/eslint-plugin-query";
 import drizzle from "eslint-plugin-drizzle";
 import tseslint from "typescript-eslint";
 
@@ -12,6 +12,7 @@ export default tseslint.config(
     ignores: [".next", "src/components/ui"],
   },
   ...compat.extends("next/core-web-vitals"),
+  queryPlugin.configs["flat/recommended"],
   {
     files: ["**/*.ts", "**/*.tsx"],
     plugins: {
@@ -32,7 +33,10 @@ export default tseslint.config(
       "@typescript-eslint/consistent-type-definitions": "off",
       "@typescript-eslint/consistent-type-imports": [
         "warn",
-        { prefer: "type-imports", fixStyle: "inline-type-imports" },
+        {
+          prefer: "type-imports",
+          fixStyle: "inline-type-imports",
+        },
       ],
       "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
       "@typescript-eslint/require-await": "off",

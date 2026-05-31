@@ -1,3 +1,4 @@
+import QueryProvider from "@/providers/query-provider";
 import "@/styles/globals.css";
 import { TRPCReactProvider } from "@/trpc/react";
 
@@ -36,7 +37,9 @@ export default async function RootLayout({
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem enableColorScheme>
           <TRPCReactProvider>
-            <NextIntlClientProvider locale={locale}>{children}</NextIntlClientProvider>
+            <NextIntlClientProvider locale={locale}>
+              <QueryProvider>{children}</QueryProvider>
+            </NextIntlClientProvider>
           </TRPCReactProvider>
         </ThemeProvider>
       </body>
