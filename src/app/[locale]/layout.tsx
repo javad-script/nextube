@@ -4,6 +4,7 @@ import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 
 import { TRPCReactProvider } from "@/trpc/react";
+import { ThemeProvider } from "next-themes";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
@@ -31,13 +32,24 @@ export default async function RootLayout({
     notFound();
   }
   return (
-    <html lang={locale} className={`${geist.variable} antialiased`}>
+    <html
+      lang={locale}
+      className={`${geist.variable} antialiased`}
+      suppressHydrationWarning
+    >
       <body>
-        <TRPCReactProvider>
-          <NextIntlClientProvider locale={locale}>
-            {children}
-          </NextIntlClientProvider>
-        </TRPCReactProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          enableColorScheme
+        >
+          <TRPCReactProvider>
+            <NextIntlClientProvider locale={locale}>
+              {children}
+            </NextIntlClientProvider>
+          </TRPCReactProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
