@@ -1,3 +1,9 @@
+import { Button } from "@/components/ui/button";
+
 export default function Page() {
-  return <div>hello world</div>;
+  return (
+    <div>
+      <Button variant={"default"}>hi</Button>
+    </div>
+  );
 }
