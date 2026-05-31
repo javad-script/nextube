@@ -1,12 +1,12 @@
 import "@/styles/globals.css";
+import { TRPCReactProvider } from "@/trpc/react";
 
 import { type Metadata } from "next";
-import { Geist } from "next/font/google";
-
-import { TRPCReactProvider } from "@/trpc/react";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { ThemeProvider } from "next-themes";
+import { Geist } from "next/font/google";
 import { notFound } from "next/navigation";
-import { hasLocale, NextIntlClientProvider } from "next-intl";
+
 import { routing } from "@/i18n/routing";
 
 export const metadata: Metadata = {
@@ -32,22 +32,11 @@ export default async function RootLayout({
     notFound();
   }
   return (
-    <html
-      lang={locale}
-      className={`${geist.variable} antialiased`}
-      suppressHydrationWarning
-    >
+    <html lang={locale} className={`${geist.variable} antialiased`} suppressHydrationWarning>
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          enableColorScheme
-        >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem enableColorScheme>
           <TRPCReactProvider>
-            <NextIntlClientProvider locale={locale}>
-              {children}
-            </NextIntlClientProvider>
+            <NextIntlClientProvider locale={locale}>{children}</NextIntlClientProvider>
           </TRPCReactProvider>
         </ThemeProvider>
       </body>
