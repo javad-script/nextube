@@ -1,5 +1,6 @@
-import { Button } from "@/components/ui/button";
 import { getTranslations } from "next-intl/server";
+
+import { Button } from "@/components/ui/button";
 
 export default async function Page() {
   const t = await getTranslations("homePage");
