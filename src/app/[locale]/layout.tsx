@@ -1,16 +1,10 @@
-import QueryProvider from "@/providers/query-provider";
+import AppProviders from "@/providers/AppProviders";
 import "@/styles/globals.css";
-import { TRPCReactProvider } from "@/trpc/react";
 
 import { type Metadata } from "next";
-import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { ThemeProvider } from "next-themes";
-import { notFound } from "next/navigation";
 
-import fonts, { geist } from "@/lib/fonts";
+import fonts from "@/lib/fonts";
 import { isRtl } from "@/lib/utils";
-
-import { routing } from "@/i18n/routing";
 
 const fontsVariables = fonts.map((font) => font.variable);
 
@@ -28,24 +22,16 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
+
   return (
     <html
       lang={locale}
       dir={isRtl(locale) ? "rtl" : "ltr"}
-      className={`${geist.className} ${fontsVariables.join(" ")} antialiased`}
+      className={`${fontsVariables.join(" ")} antialiased`}
       suppressHydrationWarning
     >
       <body>
-        <TRPCReactProvider>
-          <NextIntlClientProvider locale={locale}>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem enableColorScheme>
-              <QueryProvider>{children}</QueryProvider>
-            </ThemeProvider>
-          </NextIntlClientProvider>
-        </TRPCReactProvider>
+        <AppProviders locale={locale}>{children}</AppProviders>
       </body>
     </html>
   );
