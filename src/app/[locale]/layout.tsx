@@ -8,6 +8,7 @@ import { ThemeProvider } from "next-themes";
 import { notFound } from "next/navigation";
 
 import fonts, { geist } from "@/lib/fonts";
+import { isRtl } from "@/lib/utils";
 
 import { routing } from "@/i18n/routing";
 
@@ -33,17 +34,18 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
+      dir={isRtl(locale) ? "rtl" : "ltr"}
       className={`${geist.className} ${fontsVariables.join(" ")} antialiased`}
       suppressHydrationWarning
     >
       <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem enableColorScheme>
-          <TRPCReactProvider>
-            <NextIntlClientProvider locale={locale}>
+        <TRPCReactProvider>
+          <NextIntlClientProvider locale={locale}>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem enableColorScheme>
               <QueryProvider>{children}</QueryProvider>
-            </NextIntlClientProvider>
-          </TRPCReactProvider>
-        </ThemeProvider>
+            </ThemeProvider>
+          </NextIntlClientProvider>
+        </TRPCReactProvider>
       </body>
     </html>
   );
