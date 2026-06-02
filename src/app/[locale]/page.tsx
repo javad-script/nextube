@@ -9,7 +9,7 @@ export default async function Page() {
   const t = await getTranslations("homePage");
   return (
     <div>
-      <Button variant={"default"}>{`${t("title")} ${name}`}</Button>
+      <Button className="" variant={"default"}>{`${t("title")} ${name}`}</Button>
     </div>
   );
 }
