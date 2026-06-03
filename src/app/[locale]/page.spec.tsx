@@ -1,9 +1,10 @@
 import Page from "@/app/[locale]/page";
-import { redis } from "@/server/redis";
 import { render, screen } from "@testing-library/react";
 import { expect, it, vi } from "vitest";
 
 import { getTranslations } from "next-intl/server";
+
+import { redis } from "@/lib/redis";
 
 vi.mock("@/server/redis", () => ({
   redis: {

@@ -1,6 +1,6 @@
-import { redis } from "@/server/redis";
-
 import { getTranslations } from "next-intl/server";
+
+import { redis } from "@/lib/redis";
 
 import { Button } from "@/components/ui/button";
 
