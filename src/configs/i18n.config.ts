@@ -1,4 +1,4 @@
-import type { TLanguage } from "@/types/i18n";
+import type { TLanguage } from "@/types/i18n.types";
 
 export const i18nConfig = {
   defaultLocale: "en",

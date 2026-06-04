@@ -6,7 +6,7 @@ import { getTranslations } from "next-intl/server";
 
 import { redis } from "@/lib/redis";
 
-vi.mock("@/server/redis", () => ({
+vi.mock("@/lib/redis", () => ({
   redis: {
     get: vi.fn(),
   },
