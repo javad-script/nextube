@@ -1,6 +1,6 @@
 "use client";
 
-import { DEFAULT_THEME } from "@/configs/app.config";
+import { appConfig } from "@/configs/app.config";
 import { TRPCReactProvider } from "@/trpc/react";
 
 import { NextIntlClientProvider } from "next-intl";
@@ -26,7 +26,8 @@ export default function AppProviders({ children, locale }: Props) {
       <NextIntlClientProvider locale={locale}>
         <ThemeProvider
           attribute="class"
-          defaultTheme={DEFAULT_THEME}
+          defaultTheme={appConfig.defaultTheme}
+          themes={appConfig.themes}
           enableSystem
           enableColorScheme
         >
