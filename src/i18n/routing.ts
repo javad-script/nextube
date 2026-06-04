@@ -1,9 +1,11 @@
+import { i18nConfig } from "@/configs/i18n.config";
+
 import { defineRouting } from "next-intl/routing";
 
-import { DEFAULT_LOCALE, LOCALES } from "@/constants/i18n";
+const { defaultLocale, localePrefix } = i18nConfig;
 
 export const routing = defineRouting({
-  locales: LOCALES,
-  defaultLocale: DEFAULT_LOCALE,
-  localePrefix: "always",
+  defaultLocale,
+  localePrefix,
+  locales: i18nConfig.languages.map(({ locale }) => locale),
 });
